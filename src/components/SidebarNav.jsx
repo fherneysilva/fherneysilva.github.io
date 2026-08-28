@@ -6,6 +6,7 @@ import FadeInSection from "./FadeInSection";
 import { useMediaQuery } from "@mui/material";
 import { useLanguage } from "../i18n/useLanguage";
 import SiscodexNavLabel from "./SiscodexNavLabel";
+import { SHOW_SISCODEX } from "../siteConfig";
 
 const SidebarNav = () => {
   const isMobile = useMediaQuery("(max-width: 800px)");
@@ -16,7 +17,11 @@ const SidebarNav = () => {
     <a key="3" href="#experience"><span className="nav-slash">/</span>{t.nav.experience.toLowerCase()}</a>,
     <a key="4" href="#projects"><span className="nav-slash">/</span>{t.nav.software.toLowerCase()}</a>,
     <a key="5" href="#blog"><span className="nav-slash">/</span>{t.nav.blog.toLowerCase()}</a>,
-    <a key="6" href="#siscodex"><span className="nav-slash">/</span><SiscodexNavLabel text={t.nav.siscodex.toLowerCase()} /></a>,
+    ...(SHOW_SISCODEX
+      ? [
+          <a key="6" href="#siscodex"><span className="nav-slash">/</span><SiscodexNavLabel text={t.nav.siscodex.toLowerCase()} /></a>,
+        ]
+      : []),
   ];
 
   return (

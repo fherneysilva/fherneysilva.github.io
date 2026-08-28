@@ -13,9 +13,9 @@ const content = {
       name: "fherney",
       nameSuffix: " here.",
       tagline: "Building technology that scales.",
-      role: "Senior Software Engineer, Tech Lead & CEO of Siscodex.",
+      role: "Senior Software Engineer & Technical Lead.",
       desc:
-        "I build cloud infrastructure by day and lead my own software company by night. Between architecture, code, and personal projects, I always find time for the occasional video game. Every now and then, it all happens at once.",
+        "I build cloud infrastructure by day and work on personal software projects by night. Between architecture, code, and side projects, I always find time for the occasional video game. Every now and then, it all happens at once.",
       contact: "Contact me",
     },
     about: {
@@ -210,9 +210,9 @@ const content = {
       name: "fherney",
       nameSuffix: " aquí.",
       tagline: "Construyendo tecnología que escala.",
-      role: "Senior Software Engineer, Tech Lead y CEO de Siscodex.",
+      role: "Senior Software Engineer y Tech Lead.",
       desc:
-        "Construyo infraestructura cloud de día y lidero mi propia empresa de software de noche. Entre arquitectura, código y proyectos personales, siempre encuentro tiempo para algún videojuego. De vez en cuando, todo pasa al mismo tiempo.",
+        "Construyo infraestructura cloud de día y trabajo en proyectos de software personales de noche. Entre arquitectura, código y proyectos personales, siempre encuentro tiempo para algún videojuego. De vez en cuando, todo pasa al mismo tiempo.",
       contact: "Contáctame",
     },
     about: {
