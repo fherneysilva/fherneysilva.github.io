@@ -9,6 +9,7 @@ import { useLanguage } from "../i18n/useLanguage";
 import { useTheme } from "../theme/useTheme";
 import SiscodexNavLabel from "./SiscodexNavLabel";
 import { trackEvent } from "../utils/analytics";
+import { SHOW_SISCODEX } from "../siteConfig";
 
 const NavBar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -61,9 +62,11 @@ const NavBar = () => {
             <Nav.Link href="#experience">{t.nav.experience}</Nav.Link>
             <Nav.Link href="#projects">{t.nav.software}</Nav.Link>
             <Nav.Link href="#blog">{t.nav.blog}</Nav.Link>
-            <Nav.Link href="#siscodex">
-              <SiscodexNavLabel text={t.nav.siscodex} />
-            </Nav.Link>
+            {SHOW_SISCODEX && (
+              <Nav.Link href="#siscodex">
+                <SiscodexNavLabel text={t.nav.siscodex} />
+              </Nav.Link>
+            )}
           </Nav>
           <Nav className="ms-auto align-items-center" onSelect={() => setExpanded(false)}>
             <Nav.Link

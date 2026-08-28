@@ -7,6 +7,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
 import "./styles/Global.css";
+import { SHOW_SISCODEX } from "./siteConfig";
 
 const About = lazy(() => import("./components/About"));
 const Experience = lazy(() => import("./components/Experience"));
@@ -63,7 +64,7 @@ function App() {
                   <Experience />
                   <Projects />
                   <Blog />
-                  <Siscodex />
+                  {SHOW_SISCODEX && <Siscodex />}
                   <Credits />
                 </Suspense>
               </>
