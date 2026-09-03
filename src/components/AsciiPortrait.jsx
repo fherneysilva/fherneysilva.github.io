@@ -10,6 +10,7 @@ const memoryCache = {};
 // see the glow canvas below), so the particle color stays fixed.
 const ACCENT_RGB = "232, 163, 77";
 const GLOW_COLOR = "#16161a";
+const GLOW_RGB = "22, 22, 26";
 
 const calculateSize = (width) => {
   if (width <= 480) {
@@ -170,6 +171,11 @@ const AsciiPortrait = () => {
     // Soft glow traced from the particles' own resting positions, so in
     // light mode the dark backdrop follows the actual portrait silhouette
     // instead of a generic shape. Built once here rather than every frame.
+    // Deliberately avoids ctx.filter (blur): support for canvas 2D filters
+    // on a detached, never-attached-to-the-DOM canvas is inconsistent on
+    // mobile GPU/browser combinations (seen missing entirely on Chrome for
+    // Android on a Samsung tablet), so the softness comes from overlapping
+    // solid circles instead.
     let glowCanvas = null;
     if (dataReady && particlesRef.current.length) {
       glowCanvas = document.createElement("canvas");
@@ -177,7 +183,15 @@ const AsciiPortrait = () => {
       glowCanvas.height = size * dpr;
       const glowCtx = glowCanvas.getContext("2d");
       glowCtx.scale(dpr, dpr);
-      glowCtx.filter = "blur(3px)";
+      // Two passes approximate a soft blur: a wider, faint halo followed by
+      // a tighter, fully opaque core, so the silhouette edge doesn't show
+      // each particle's individual circle.
+      glowCtx.fillStyle = `rgba(${GLOW_RGB}, 0.35)`;
+      particlesRef.current.forEach((p) => {
+        glowCtx.beginPath();
+        glowCtx.arc(p.targetX, p.targetY, 8, 0, Math.PI * 2);
+        glowCtx.fill();
+      });
       glowCtx.fillStyle = GLOW_COLOR;
       particlesRef.current.forEach((p) => {
         glowCtx.beginPath();
