@@ -288,7 +288,6 @@ const AsciiPortrait = () => {
       mouseTargetRef.current.x = touch.clientX - rect.left;
       mouseTargetRef.current.y = touch.clientY - rect.top;
       mouseRef.current.active = true;
-      if (e.cancelable) e.preventDefault();
     };
 
     const handleLeave = () => {
@@ -299,7 +298,7 @@ const AsciiPortrait = () => {
 
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseleave", handleLeave);
-    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
     canvas.addEventListener("touchend", handleLeave);
 
     draw();
@@ -321,7 +320,7 @@ const AsciiPortrait = () => {
         width: `${size}px`,
         height: `${size}px`,
         cursor: "crosshair",
-        touchAction: "none",
+        touchAction: "pan-y",
       }}
     />
   );
